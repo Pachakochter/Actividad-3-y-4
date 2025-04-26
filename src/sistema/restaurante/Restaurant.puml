@@ -1,0 +1,75 @@
+@startuml
+class  Pedido{
+    - id : int
+    - fecha : String
+    - tomapedido : String
+    - cuenta : Double
+
+    + calcularTotal()
+    + confirmar()
+}
+class Producto{
+    - platillo : String
+    - precio : Double
+    - categoria : String
+
+    + actualizarPrecio()
+}
+class Mesa{
+    - numero : int
+    - capacidad : int
+    - estado : String
+
+    + reservar()
+    + liberar()
+}
+class Restaurante{
+    - nombre : String
+    - direccion : String
+    - telefono : String
+
+    + abrir_restaurante()
+    + cerrar_restaurante()
+    
+}
+class Empleado{
+    - codigo_empleado : String
+    - nombre : String
+    - puesto : String
+    - salario : Double
+
+    + trabajar()
+    + descanso()
+
+}
+class Cliente{
+    - codigo_cliente : String
+    - nombre : String
+    - pedidos : int
+
+    + hacer_pedido()
+    + pagar_cuenta()
+
+}
+
+Restaurante"1" -- "1..n" Empleado: trabaja en <
+Restaurante -- Empleado: contrata >
+
+Restaurante"1" -- "1..n" Cliente: usuario de <
+Restaurante -- Cliente: es proveedor a >
+
+Restaurante"1" -- "1..n" Mesa: pertenece a <
+Restaurante -- Mesa: propietario >
+
+Restaurante"1" -- "1..n" Pedido: solicita a <
+Restaurante -- Pedido: atiende el >
+
+Pedido"1" -- "1..n" Producto: solicitados por <
+Pedido --  Producto: necesita >
+
+Cliente"1" -- "0..n" Pedido: es consumo para <
+Cliente --  Pedido: adquiere >
+
+Mesa"1" -- "1..n" Cliente: usuario de <
+Mesa -- Cliente: estancia >
+@enduml
