@@ -1,28 +1,4 @@
 @startuml
-class  Pedido{
-    - id : int
-    - fecha : String
-    - tomapedido : String
-    - cuenta : Double
-
-    + calcularTotal()
-    + confirmar()
-}
-class Producto{
-    - platillo : String
-    - precio : Double
-    - categoria : String
-
-    + actualizarPrecio()
-}
-class Mesa{
-    - numero : int
-    - capacidad : int
-    - estado : String
-
-    + reservar()
-    + liberar()
-}
 class Restaurante{
     - nombre : String
     - direccion : String
@@ -40,23 +16,45 @@ class Empleado{
 
     + trabajar()
     + descanso()
-
 }
-class Cliente{
+class Comensal{
     - codigo_cliente : String
     - nombre : String
     - pedidos : int
 
     + hacer_pedido()
     + pagar_cuenta()
+}
+class  Pedido{
+    - id : int
+    - fecha : String
+    - tomapedido : String
+    - cuenta : Double
 
+    + calcularTotal()
+    + confirmar()
+}
+class Menu{
+    - platillo : String
+    - precio : Double
+    - categoria : String
+
+    + actualizarPrecio()
+}
+class Mesa{
+    - numero : int
+    - capacidad : int
+    - estado : String
+
+    + reservar()
+    + liberar()
 }
 
 Restaurante"1" -- "1..n" Empleado: trabaja en <
 Restaurante -- Empleado: contrata >
 
-Restaurante"1" -- "1..n" Cliente: usuario de <
-Restaurante -- Cliente: es proveedor a >
+Restaurante"1" -- "1..n" Comensal: usuario de <
+Restaurante -- Comensal: es proveedor a >
 
 Restaurante"1" -- "1..n" Mesa: pertenece a <
 Restaurante -- Mesa: propietario >
@@ -64,12 +62,12 @@ Restaurante -- Mesa: propietario >
 Restaurante"1" -- "1..n" Pedido: solicita a <
 Restaurante -- Pedido: atiende el >
 
-Pedido"1" -- "1..n" Producto: solicitados por <
-Pedido --  Producto: necesita >
+Pedido"1" -- "1..n" Menu: solicitados por <
+Pedido --  Menu: necesita >
 
-Cliente"1" -- "0..n" Pedido: es consumo para <
-Cliente --  Pedido: adquiere >
+Comensal"1" -- "0..n" Pedido: es consumo para <
+Comensal --  Pedido: adquiere >
 
-Mesa"1" -- "1..n" Cliente: usuario de <
-Mesa -- Cliente: estancia >
+Mesa"1" -- "1..n" Comensal: usuario de <
+Mesa -- Comensal: estancia >
 @enduml
