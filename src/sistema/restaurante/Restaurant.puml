@@ -20,13 +20,13 @@ class Empleado{
 class Comensal{
     - codigo_cliente : String
     - nombre : String
-    - pedidos : int
+    - pedidos : Int
 
     + hacer_pedido()
     + pagar_cuenta()
 }
 class  Pedido{
-    - id : int
+    - id : Int
     - fecha : String
     - tomapedido : String
     - cuenta : Double
@@ -41,9 +41,18 @@ class Menu{
 
     + actualizarPrecio()
 }
+class Insumos{
+    - tipo : boolean
+    - nombre :String
+    - fecha : String
+    - cantidad : Int
+
+    + Verificar_tipo_insumo()
+    + Verificar_fecha_caducacion()
+}
 class Mesa{
-    - numero : int
-    - capacidad : int
+    - numero : Int
+    - capacidad : Int
     - estado : String
 
     + reservar()
@@ -62,8 +71,14 @@ Restaurante -- Mesa: propietario >
 Restaurante"1" -- "1..n" Pedido: solicita a <
 Restaurante -- Pedido: atiende el >
 
+Restaurante"1" -- "1..n" Insumos: requiere <
+Restaurante -- Insumos: entrega >
+
 Pedido"1" -- "1..n" Menu: solicitados por <
 Pedido --  Menu: necesita >
+
+Menu "1" -- "1..n" Insumos: tiene <
+Menu -- Insumos: requiere >
 
 Comensal"1" -- "0..n" Pedido: es consumo para <
 Comensal --  Pedido: adquiere >
